@@ -2,7 +2,7 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-
+const bodypaser = require("body-parser");
 const PORT = 3000;
 
 //Start Server
@@ -17,6 +17,21 @@ const productRoutes = require("./api/routes/products");
 app.use("/orders", orderRoutes);
 app.use("/products", productRoutes);
 
+//body를 다루기 위해 body-parser 객체 생성
+app.use(bodypaser.json());
+app.use(bodypaser.urlencoded({ extended: false }));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    );
+    if(req.method === "OPTION"){
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+        return res.status(200).json({});
+    }
+    next();
+});
 
 // server 파일의 get 구현
 app.get("/", (req, res) => {
@@ -41,3 +56,4 @@ app.use((error, req, res, next) => {
     });
 });
 
+// body-parser 적용
