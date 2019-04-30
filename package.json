@@ -1,0 +1,23 @@
+{
+  "name": "secondtrainig",
+  "version": "1.0.0",
+  "description": "두번째 연습",
+  "main": "server.js",
+  "scripts": {
+    "test": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github4mitlab/secondTrainig.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express"
+  ],
+  "author": "maylee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/github4mitlab/secondTrainig/issues"
+  },
+  "homepage": "https://github.com/github4mitlab/secondTrainig#readme"
+}
