@@ -8,5 +8,28 @@ router.get("/", (req, res) => {
    });
 });
 
+// POST router
+router.post("/", (req, res) => {
+    res.status(200).json({
+        message : "post /Orders"
+    });
+
+});
+
+// PUT router
+router.put("/", (req, res) => {
+    res.status(200).json({
+    message : "PUT /Orders"
+    });
+});
+
+// DELETE router
+router.delete("/", (req, res) => {
+    res.status(200).json({
+    message : "DELETE /Orders"
+    });
+});
+
+
 module.exports = router;
 

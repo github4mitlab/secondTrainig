@@ -8,4 +8,29 @@ router.get("/", (req, res) => {
     });
 });
 
+ 
+ // POST router
+ router.post("/", (req, res) => {
+     res.status(200).json({
+         message : "post /Products"
+     });
+ 
+ });
+ 
+ // PUT router
+ router.put("/", (req, res) => {
+     res.status(200).json({
+     message : "PUT /Products"
+     });
+ });
+ 
+ // DELETE router
+ router.delete("/", (req, res) => {
+     res.status(200).json({
+     message : "DELETE /Products"
+     });
+ });
+ 
+ 
+ 
 module.exports = router;
