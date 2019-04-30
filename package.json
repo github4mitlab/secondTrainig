@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/github4mitlab/secondTrainig/issues"
   },
-  "homepage": "https://github.com/github4mitlab/secondTrainig#readme"
+  "homepage": "https://github.com/github4mitlab/secondTrainig#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
