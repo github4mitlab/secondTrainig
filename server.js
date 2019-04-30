@@ -1,6 +1,8 @@
 const http = require("http");
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+
 const PORT = 3000;
 
 //Start Server
@@ -23,3 +25,19 @@ app.get("/", (req, res) => {
     });
  });
  
+// 에러처리를 위한 MORGAN 객체 생성, 에러메시지처리 부분 구현
+app.use(morgan("dev"));
+app.use((req, res, next) => {
+    const error = new Error("요청 파일 못차즘");
+    error.status = 404;
+    next(error);
+});
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    });
+});
+
