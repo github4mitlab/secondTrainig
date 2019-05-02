@@ -9,15 +9,14 @@ router.get('/', (req, res) => {
 });
 
 // body-parser 통한 products 파일의 router POST 구현
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const product = {
-    // 단순 입력 데이터 출력이라면 당연히 params(파라메터)로
-    name: req.params.name,
-    price: req.params.price
+//      name: req.params.name,
+//   price: req.params.price
 
     // 디비에 넣으려면 body
-    // name : req.body.name,
-    // price : req.body.price
+    name : req.body.name,
+    price : req.body.price
   };
   
   res.status(200).json({
