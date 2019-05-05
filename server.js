@@ -3,8 +3,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodypaser = require("body-parser");
-app.use(bodypaser.json());
-app.use(bodypaser.urlencoded({ extended : false }));
+const mongoose = require("mongoose");
 
 
 // 하위 라우터들의 정의
@@ -17,6 +16,16 @@ app.use("/products", productRoutes);
 
 // 에러처리를 위한 MORGAN 객체 생성, 에러메시지처리 부분 구현
 app.use(morgan("dev"));
+app.use(bodypaser.json());
+app.use(bodypaser.urlencoded({ extended : false }));
+
+//DB 연결
+const db = require('./config/key.js').mongoURI;
+
+mongoose.connect(db, { useNewUrlParser : true })
+    .then( () => console.log("MongoDB Connected..."))
+    .catch( err => console.log(err));
+
 
 //body를 다루기 위해 body-parser 객체 생성
 app.use((req, res, next) => {
@@ -33,13 +42,13 @@ app.use((req, res, next) => {
 });
 
 
-// // server 파일의 get 구현
-// app.get("/", (req, res) => {
-//     res.status(200).json({
-//         message : "It's a root!!!"
-//     });
-//  });
-//
+ // server 파일의 get 구현
+ app.get("/", (req, res) => {
+     res.status(200).json({
+         message : "It's a root!!!"
+     });
+  });
+
 
 app.use((req, res, next) => {
     const error = new Error("요청 파일 못차즘");
@@ -50,7 +59,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
     res.status(error.status || 500);
     res.json({
-        error: {
+        error1: {
             message: error.message
         }
     });
